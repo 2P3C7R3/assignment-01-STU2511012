@@ -1,0 +1,13 @@
+# Design Justification
+
+## Storage Systems
+
+I would use a **relational OLTP database** such as PostgreSQL for the hospital’s operational system of record. This is where current patient registrations, admissions, diagnoses, medications, procedures, and discharge events live. It fits the readmission-risk use case because historical treatment data starts in a strongly consistent transactional system. For the plain-English doctor query feature, I would store clinical notes, discharge summaries, and other narrative history in a **vector database** such as pgvector, Pinecone, or Weaviate after chunking and embedding the text. That enables semantic retrieval for questions like “Has this patient had a cardiac event before?” even when the wording in the notes differs. For monthly management reporting, I would load curated data from the OLTP system and finance systems into a **data warehouse or lakehouse** for bed occupancy, cost analysis, and department-level reporting. For real-time ICU vitals, I would use a **time-series or streaming store** such as InfluxDB, or Kafka plus durable object storage, because this data arrives continuously and is better handled by append-heavy, time-indexed infrastructure. Finally, I would maintain a **feature store** for readmission-risk features so model training and scoring use consistent definitions.
+
+## OLTP vs OLAP Boundary
+
+The OLTP boundary ends at the hospital’s operational systems: EHR/EMR, billing, admissions, and related applications where transactions are created and updated in real time. These systems prioritize correctness, low-latency writes, and auditability. The OLAP side begins once data is extracted from those systems through ETL/ELT or change-data-capture pipelines into the warehouse/lakehouse, feature store, vector index, and time-series analytics layer. In other words, the moment data is reshaped for aggregates, embeddings, model features, or long-horizon trend analysis, it has crossed from transactional processing into analytical processing.
+
+## Trade-offs
+
+A major trade-off is **architectural complexity**. This design uses multiple storage systems because each workload is different, but that increases operational overhead, data synchronization risk, and governance burden. To mitigate that, I would keep one clear source of truth for each domain, use an event-driven ingestion layer with schema validation, and enforce shared metadata, lineage, and access controls. I would also start pragmatically—for example, using PostgreSQL with pgvector before introducing separate vector infrastructure—then split components only when scale or performance clearly requires it.

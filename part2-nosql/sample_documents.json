@@ -1,0 +1,109 @@
+[
+  {
+    "_id": "ELEC101",
+    "name": "Sony 60 Inch 4k Smart TV",
+    "category": "Electronics",
+    "brand": "Sony",
+    "price": 34999,
+    "currency": "INR",
+    "stock": 12,
+    "warranty": {
+      "period_months": 24,
+      "type": "Manufacturer"
+    },
+    "specifications": {
+      "screen_size_inches": 60,
+      "resolution": "3840x2160",
+      "voltage": "220-240V",
+      "connectivity": [
+        "Wi-Fi",
+        "Bluetooth",
+        "HDMI",
+        "USB"
+      ]
+    },
+    "ratings": {
+      "average": 4.5,
+      "count": 126
+    },
+    "tags": [
+      "smart-tv",
+      "4k",
+      "home-entertainment"
+    ]
+  },
+  {
+    "_id": "CLOT201",
+    "name": "Men's Sweat Shirt",
+    "category": "Clothing",
+    "brand": "American Eagle",
+    "price": 2799,
+    "currency": "INR",
+    "stock": 52,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "material": {
+      "primary_fabric": "Cotton",
+      "blend_percentages": [
+        {
+          "component": "Cotton",
+          "percent": 97
+        },
+        {
+          "component": "Elastane",
+          "percent": 3
+        }
+      ]
+    },
+    "variants": [
+      {
+        "color": "Navy Blue",
+        "sku": "CLOT201-NV",
+        "available_stock": 20
+      },
+      {
+        "color": "White",
+        "sku": "CLOT201-WH",
+        "available_stock": 32
+      }
+    ],
+    "care_instructions": [
+      "Machine wash cold",
+      "Do not bleach",
+      "Iron on low heat"
+    ]
+  },
+  {
+    "_id": "GROC3001",
+    "name": "Greek Yogurt",
+    "category": "Groceries",
+    "brand": "Amul",
+    "price": 220,
+    "currency": "INR",
+    "stock": 85,
+    "expiry_date": "2024-12-20",
+    "weight": {
+      "value": 400,
+      "unit": "g"
+    },
+    "storage": {
+      "temperature": "2-4C",
+      "instructions": "Keep refrigerated"
+    },
+    "nutritional_info": {
+      "serving_size_g": 100,
+      "calories": 92,
+      "protein_g": 9,
+      "fat_g": 4,
+      "carbohydrates_g": 6
+    },
+    "ingredients": [
+      "Milk",
+      "Live cultures"
+    ]
+  }
+]
